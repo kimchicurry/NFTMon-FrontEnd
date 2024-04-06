@@ -1,32 +1,44 @@
-import axios from 'axios';
+export const pinJSONToIPFS = async (name, description, image) => {
+  const pinataContent = {
+    name: name,
+    description: description,
+    image: image,
+  };
 
-// Export the pinJSONToIPFS function so it can be imported elsewhere
-export const pinJSONToIPFS = async (jsonData, apiKey, apiSecret) => {
-    // Convert JSON to Blob
-    const jsonBlob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
+  const pinataMetadata = {
+    name: "nftmon",
+  };
 
-    // Prepare formData to send in the POST request
-    let formData = new FormData();
-    formData.append("file", jsonBlob);
+  const pinataOptions = {
+    cidVersion: 1,
+  };
 
-    // Set up the API endpoint and headers
-    const url = 'https://api.pinata.cloud/pinning/pinFileToIPFS';
-    let headers = {
-        pinata_api_key: apiKey, // Use the apiKey parameter
-        pinata_secret_api_key: apiSecret, // Use the apiSecret parameter
-        // The Content-Type 'multipart/form-data' will be set automatically by axios when using FormData
-    };
+  const bodyData = {
+    pinataContent: pinataContent,
+    pinataMetadata: pinataMetadata,
+    pinataOptions: pinataOptions,
+  };
 
-    try {
-        // Make a POST request to Pinata API
-        const response = await axios.post(url, formData, { headers });
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJjYWQzZTY4Yy0wZDMxLTQxNmYtYmVhNS02ZDBmZjZmMzMwNTgiLCJlbWFpbCI6InRlY2hpc3R1ZGlva3JAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6IjA0YjQ1YjNjY2UxYjZjZmI4MzUxIiwic2NvcGVkS2V5U2VjcmV0IjoiYzA4ZmViZGM2MWE2OWZiZTlmYmE1ZTA1MjI5M2ZjYTE4MTQ2MTUxNTYwMDg2YzBjNTI2MGU2NTMyM2RmN2UzYSIsImlhdCI6MTcxMjQwMzg2NX0.CG-ij8vrqgQPv90k6eO1KD3QwVwQXPTVz5Gcdo9N3CI",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(bodyData),
+  };
 
-        // The response from Pinata will include the IPFS hash (CID)
-        return response.data;
-    } catch (error) {
-        console.error('Error pinning JSON to IPFS:', error);
-        return null;
-    }
+  try {
+    const response = await fetch(
+      "https://api.pinata.cloud/pinning/pinJSONToIPFS",
+      options
+    );
+    const data = await response.json();
+    
+    return data;
+  } catch (error) {
+    console.error("Error pinning JSON to IPFS:", error);
+    return null;
+  }
 };
-
-// You can remove the example usage and logging from this file if you want to use this function in other files.

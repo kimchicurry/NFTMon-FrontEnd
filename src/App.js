@@ -3,6 +3,7 @@ import "./App.css";
 import { useState } from "react";
 import Home from "./pages/Home";
 import Breed from "./pages/Breed";
+import ImageGen from "./pages/ImageGen";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/breed" element={<Breed />}></Route>
+        <Route path="/imageGen" element={<ImageGen />}></Route>
       </Routes>
     </BrowserRouter>
   );

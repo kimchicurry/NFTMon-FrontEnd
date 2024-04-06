@@ -6,14 +6,11 @@ const ImageGen = () => {
   const [motherDescription, setMotherDescription] = useState("");
   const [prompt, setPrompt] = useState("");
 
-  const OPEN_AI_API_KEY = ""; 
-
-
   const generateImage = async () => {
     const options = {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${OPEN_AI_API_KEY}`,
+        Authorization: `Bearer ${process.env.REACT_APP_OPEN_AI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -37,7 +34,7 @@ const ImageGen = () => {
     const options = {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.OPEN_AI_API_KEY}`,
+        Authorization: `Bearer ${process.env.REACT_APP_OPEN_AI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

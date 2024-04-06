@@ -6,7 +6,7 @@ const ImageGen = () => {
   const [motherDescription, setMotherDescription] = useState("");
   const [prompt, setPrompt] = useState("");
 
-  const OPEN_AI_API_KEY = "";
+  const OPEN_AI_API_KEY = ""; 
 
 
   const generateImage = async () => {

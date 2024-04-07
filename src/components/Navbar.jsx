@@ -15,7 +15,7 @@ const Navbar = () => {
 
       <div className="flex justify-evenly w-[40%] ">
         <div>
-          <a href="/home">Home</a>
+          <a href="/">Home</a>
         </div>
         <div>
           <a href="/breed">Breed</a>
@@ -45,7 +45,7 @@ const Navbar = () => {
           </div>
         ) : (
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white tracking-wide py-2 px-4 rounded"
             onClick={() => connectWallet()}
           >
             Connect Wallet

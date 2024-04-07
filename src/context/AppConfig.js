@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import axios from "axios";
 import { Contract } from "ethers";
@@ -7,9 +7,13 @@ export const BlockchainConfig = React.createContext();
 
 export const BlockchainProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
+  const contractAddress = "0x00";
+  const contractABI = [];
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const Contract = new ethers.Contract(contractAddress, contractABI, provider);
   const signer = provider.getSigner();
+  const ContractWithSigner = Contract.connect(signer);
 
   const connectWallet = async () => {
     if (!window.ethereum) return alert("Please install MetaMask.");
@@ -22,7 +26,6 @@ export const BlockchainProvider = ({ children }) => {
   };
 
   const disconnectWallet = async () => {
-    
     setCurrentAccount("");
   };
 
@@ -37,13 +40,27 @@ export const BlockchainProvider = ({ children }) => {
     }
   };
 
+  const fetchNFTs = async () => {};
+
+  const mateNFT = async (tokenId1, tokenId2, _name) => {
+    try {
+      const response = await ContractWithSigner.mateNFT(tokenId1, tokenId2, _name);
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     checkIfWalletIsConnect();
   }, []);
+  
   return (
     <BlockchainConfig.Provider
       value={{
         currentAccount,
+        provider,
         checkIfWalletIsConnect,
         connectWallet,
         disconnectWallet,

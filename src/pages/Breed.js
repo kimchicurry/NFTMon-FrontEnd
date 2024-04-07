@@ -1,65 +1,13 @@
 import React, { useState } from "react";
-import NFTCard from "../components/NFTCard";
+import { nft_mons } from "../utils/nftMons";
 import { getColor } from "../utils/getColor";
+
 import { FaHeartCircleBolt } from "react-icons/fa6";
+import MyNFTs from "../components/MyNFTs";
 
 const Breed = () => {
   const [nft1, setnft1] = useState(null);
   const [nft2, setnft2] = useState(null);
-
-  const nft_mons = [
-    {
-      name: "Charmander",
-      img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
-      type: "fire",
-      hp: 80,
-      attack: 70,
-      defense: 60,
-      stamina: 75,
-      speed: 85,
-    },
-    {
-      name: "Squirtle",
-      img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
-      type: "water",
-      hp: 70,
-      attack: 65,
-      defense: 75,
-      stamina: 80,
-      speed: 60,
-    },
-    {
-      name: "Bulbasaur",
-      img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      type: "grass",
-      hp: 75,
-      attack: 80,
-      defense: 70,
-      stamina: 65,
-      speed: 70,
-    },
-    // Add more NFT-Mons below
-    {
-      name: "Pikachu",
-      img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-      type: "electric",
-      hp: 65,
-      attack: 75,
-      defense: 55,
-      stamina: 70,
-      speed: 95,
-    },
-    {
-      name: "Eevee",
-      img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png",
-      type: "normal",
-      hp: 70,
-      attack: 70,
-      defense: 70,
-      stamina: 70,
-      speed: 70,
-    },
-  ];
 
   function handleOnDragStart(e, selectedNFT) {
     e.dataTransfer.setData("nft1", JSON.stringify(selectedNFT));
@@ -136,17 +84,8 @@ const Breed = () => {
         </div>
       </div>
 
-      <div className="border-t-2  border-[#303030] flex flex-col gap-y-3 p-10 mt-10">
-        <p className="text-2xl"> My NFT-Mons</p>
-        <div className="flex   gap-x-4">
-          {nft_mons.map((nftMon, index) => (
-            <NFTCard
-              key={index}
-              nftMon={nftMon}
-              onDragStart={(e) => handleOnDragStart(e, nftMon)}
-            />
-          ))}
-        </div>
+      <div className="mt-10 p-10">
+        <MyNFTs nft_mons={nft_mons} handleOnDragStart={handleOnDragStart} />
       </div>
     </div>
   );

@@ -1,0 +1,55 @@
+export const nft_mons = [
+  {
+    name: "Charmander",
+    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
+    type: "fire",
+    hp: 80,
+    attack: 70,
+    defense: 60,
+    stamina: 75,
+    speed: 85,
+  },
+  {
+    name: "Squirtle",
+    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+    type: "water",
+    hp: 70,
+    attack: 65,
+    defense: 75,
+    stamina: 80,
+    speed: 60,
+  },
+  {
+    name: "Bulbasaur",
+    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    type: "grass",
+    hp: 75,
+    attack: 80,
+    defense: 70,
+    stamina: 65,
+    speed: 70,
+  },
+  // Add more NFT-Mons below
+  {
+    name: "Pikachu",
+    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+    type: "electric",
+    hp: 65,
+    attack: 75,
+    defense: 55,
+    stamina: 70,
+    speed: 95,
+  },
+  {
+    name: "Eevee",
+    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png",
+    type: "normal",
+    hp: 70,
+    attack: 70,
+    defense: 70,
+    stamina: 70,
+    speed: 70,
+  },
+  
+  
+];
